@@ -17,27 +17,22 @@
 
 
 int main(int argc, char* argv[]) {
-	FILE* fimagen = NULL;
-	int estado = EXITOSO;
-	if (argc == 5) {
-		if ((fimagen = fopen(argv[1], "rb")) == NULL) {
-			estado = NOEXISTE_IMAGEN;
-		} else {
-			char* ruta = "salida.bmp";
-			tColor color;
-			color.B = 255;
-			color.R = 0;
-			color.G = 0;
-			tBmp* bmp = (tBmp*)malloc(sizeof(tBmp));
-			inicializar(bmp);
-			pintar(bmp, 0 , 0, &color);
-			publicar(bmp, ruta);
-			destruir(bmp);
-		}
-	} else {
-		estado = CANT_PARAM_INV;
-	}
 
-	if (estado == EXITOSO) fclose(fimagen);
-	return estado;
+	printf("tam uint %d", sizeof(uint));
+	printf("tam ushort %d", sizeof(ushort));
+
+	char* ruta = "salida.bmp";
+	tColor color;
+	color.B = 255;
+	color.R = 0;
+	color.G = 0;
+	tBitmapData* bmp = (tBitmapData*)malloc(sizeof(tBitmapData));
+	bmp->alto = 200;
+	bmp->ancho = 200;
+	inicializar(bmp);
+	pintar(bmp, 0 , 0, &color);
+	publicar(bmp, ruta);
+	destruir(bmp);
+
+	return 0;
 }

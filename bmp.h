@@ -6,7 +6,6 @@
  *
  * Esta libreria contiene las funciones para armar el BMP en una estructura tBmpData
  */
-
 #ifndef __BMP_H_
 #define __BMP_H_
 #include <stdio.h>
@@ -26,11 +25,7 @@ typedef struct {
 } tBitmapData;
 
 
-typedef struct {
-	//tBitmapFileHeader bmp_file_header;
-	//tBitMapInfoHeader bmp_info_hader;
-	tBitmapData bmp_data;
-} tBmp;
+
 
 /**
  * Devuelve un entero con el estado de la ejecucion de este metodo
@@ -85,7 +80,7 @@ int leerSiguientePixel(FILE* fimagen, tColor* pixel);
 /*
  * Libera la memoria dimamica reservada para el mapa
  * */
-void destruir(tBmp* bmp);
+void destruir(tBitmapData* bmp);
 
 /**
  * Debido a que despues de finalizar la fila, se encuentran
@@ -106,8 +101,8 @@ int obtenerPuntosEntorno(tBitmapData* bmp,
 
 //  Para LogoMini
 
-void inicializar(tBmp* bmp);
+void inicializar(tBitmapData* bmp);
 
-void pintar(tBmp* bmp, int fila, int columna, tColor* color);
+void pintar(tBitmapData* bmp, int fila, int columna, tColor* color);
 
 #endif /* BMP_H_ */
