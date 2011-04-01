@@ -13,9 +13,9 @@
 typedef enum {FALSE = 0,  TRUE = 1} tBoolean;
 
 typedef struct  {
-	char R;
-	char G;
-	char B;
+	unsigned char R;
+	unsigned char G;
+	unsigned char B;
 } tColor;
 
 /**
