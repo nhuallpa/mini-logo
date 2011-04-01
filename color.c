@@ -6,6 +6,7 @@
  *      V 1.0.1
  */
 #include "color.h"
+
 tColor tomarColor(char** argv) {
 	tColor color;
 
