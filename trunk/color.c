@@ -3,6 +3,7 @@
  *
  *  Created on: Mar 18, 2011
  *      Author: nestor
+ *      V 1.0.1
  */
 #include "color.h"
 tColor tomarColor(char** argv) {

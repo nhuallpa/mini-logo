@@ -20,7 +20,7 @@ int  filtroPorColor(FILE* fimagen, tColor* color, tBitmapData* bmp) {
 	return estado;
 }
 
-void destruir(tBmp* bmp) {
+void destruir(tBitmapData* bmp) {
 	free(bmp);
 }
 
@@ -133,11 +133,15 @@ int obtenerPuntosEntorno(tBitmapData* bmp, int fila, int columna, tPunto* listaP
 
 //  para logoMini
 
-void inicializar(tBmp* bmp) {
+void inicializar(tBitmapData* bmp) {
+
+
+
+
 
 }
 
-void pintar(tBmp* bmp, int fila, int columna, tColor* color) {
+void pintar(tBitmapData* bmp, int fila, int columna, tColor* color) {
 
 }
 
