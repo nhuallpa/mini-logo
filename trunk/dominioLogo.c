@@ -6,17 +6,21 @@
  */
 #include "dominioLogo.h"
 
-char* leerLinea(FILE* fLogoInstrucciones, char* buffeLinea) {
-	return fgets(buffeLinea, 100, fLogoInstrucciones);
+char* leerLinea(FILE* fLogoInstrucciones, char* bufferLinea) {
+	return fgets(bufferLinea, LONG_BUFFER, fLogoInstrucciones);
 }
 
 
-void ejecutarComandos(FILE* fLogoInstrucciones, tBitmapData* bmp_data) {
+void ejecutarInstrucciones(FILE* fLogoInstrucciones, tBitmapData* bmp_data) {
 
 	char bufferLinea[100];
 
-		while (leerLinea(fLogoInstrucciones, bufferLinea) != NULL){
-			printf("%s", bufferLinea);
+	tInstruccion instruccionesActual;
+
+	while (leerLinea(fLogoInstrucciones, bufferLinea) != NULL){
+		if (leerInstruccion(&instruccionesActual, bufferLinea) == OK) {
+
 		}
+	}
 
 }

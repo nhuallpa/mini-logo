@@ -20,7 +20,7 @@ int  filtroPorColor(FILE* fimagen, tColor* color, tBitmapData* bmp) {
 	return estado;
 }
 
-void destruir(tBitmapData* bmp) {
+void destruirBMPData(tBitmapData* bmp) {
 	free(bmp);
 }
 
