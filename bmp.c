@@ -140,9 +140,9 @@ void inicializar(tBitmapData* bmp_data) {
 	blanco.G = 255;
 	blanco.R = 255;
 	int fila = 0;
-	for (fila = 0; fila < bmp_data->ancho; fila++ ) {
+	for (fila = 0; fila < bmp_data->alto; fila++ ) {
 		int columna = 0;
-		for (columna = 0; columna < bmp_data->alto; columna++) {
+		for (columna = 0; columna < bmp_data->ancho; columna++) {
 			tPunto* puntoActual = &bmp_data->puntos[fila][columna];
 			pintarPunto(puntoActual, &blanco);
 		}

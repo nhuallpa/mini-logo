@@ -7,9 +7,11 @@
 #ifndef BMPVISTA_H_
 #define BMPVISTA_H_
 #include "bmp.h"
+#include <string.h>
 
 #define DEFAULT_WIDTH 200
 #define DEAULT_HEIGHT 200
+
 
 typedef unsigned char uchar;
 typedef unsigned int uint;
@@ -71,7 +73,39 @@ typedef struct {
 	tBitmapData* bmp_data;
 } tBmp;
 
+
+
+/*
+ * Crea la imagen bmp en el disco con la ruta indicada
+ * en el parametro
+ * */
 void publicar(tBitmapData* bmp, char* ruta);
+
+
+void inicializarFileHeader(tBitmapFileHeader* bmp_file_header);
+
+void inicializarInfoHeader(tBitMapInfoHeader* bmp_info_hader,
+							tBitmapData* bmp_data);
+
+/*
+ * Carga el FileHeader en el archivo
+ * */
+void salvarFileHeader(tBitmapFileHeader* bmp_file_header, FILE* output);
+
+/*
+ * Carga el InfoHeader en el archivo
+ *
+ * */
+void salvarInfoHeader(tBitMapInfoHeader* bmp_info_header, FILE* output);
+
+/**
+ * Se guardan los pixeles que conforman el mapa de bits
+ * */
+void salvarDatosVisuales(tBitmapData* bmp_data, FILE* output);
+
+FILE* abrirSalida(char* ruta);
+
+void cerrarSalida(FILE* output);
 
 
 #endif /* BMPVISTA_H_ */

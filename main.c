@@ -32,8 +32,11 @@ int main(int argc, char* argv[]) {
 	bmp->alto = 200;
 	bmp->ancho = 200;
 	inicializar(bmp);
+	// TODO: testInicializarBmpData
 	testInicializarBmpData(bmp);
+
 	pintarPunto(&bmp->puntos[0][0], &color);
+
 	publicar(bmp, ruta);
 	destruir(bmp);
 
