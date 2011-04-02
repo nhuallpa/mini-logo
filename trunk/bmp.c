@@ -133,6 +133,12 @@ int obtenerPuntosEntorno(tBitmapData* bmp, int fila, int columna, tPunto* listaP
 
 //  para logoMini
 
+
+tBitmapData* crearBmpData(){
+	return (tBitmapData*)malloc(sizeof(tBitmapData));
+}
+
+
 void inicializar(tBitmapData* bmp_data) {
 
 	tColor blanco;
