@@ -80,7 +80,7 @@ int leerSiguientePixel(FILE* fimagen, tColor* pixel);
 /*
  * Libera la memoria dimamica reservada para el mapa
  * */
-void destruir(tBitmapData* bmp);
+void destruirBMPData(tBitmapData* bmp);
 
 /**
  * Debido a que despues de finalizar la fila, se encuentran

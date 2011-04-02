@@ -9,8 +9,7 @@
 #define _COLOR_H_
 #include <stdio.h>
 #include <stdlib.h>
-
-typedef enum {FALSE = 0,  TRUE = 1} tBoolean;
+#include "common.h"
 
 typedef struct  {
 	unsigned char R;
