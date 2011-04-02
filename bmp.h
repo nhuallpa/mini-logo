@@ -103,6 +103,6 @@ int obtenerPuntosEntorno(tBitmapData* bmp,
 
 void inicializar(tBitmapData* bmp);
 
-void pintar(tBitmapData* bmp, int fila, int columna, tColor* color);
+void pintarPunto(tPunto* punto, tColor* color);
 
 #endif /* BMP_H_ */
