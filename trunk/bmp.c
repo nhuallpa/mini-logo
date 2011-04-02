@@ -133,15 +133,25 @@ int obtenerPuntosEntorno(tBitmapData* bmp, int fila, int columna, tPunto* listaP
 
 //  para logoMini
 
-void inicializar(tBitmapData* bmp) {
+void inicializar(tBitmapData* bmp_data) {
 
-
-
-
-
+	tColor blanco;
+	blanco.B = 255;
+	blanco.G = 255;
+	blanco.R = 255;
+	int fila = 0;
+	for (fila = 0; fila < bmp_data->ancho; fila++ ) {
+		int columna = 0;
+		for (columna = 0; columna < bmp_data->alto; columna) {
+			tPunto* puntoActual = &bmp_data->puntos[fila][columna];
+			pintarPunto(puntoActual, &blanco);
+		}
+	}
 }
 
-void pintar(tBitmapData* bmp, int fila, int columna, tColor* color) {
-
+void pintarPunto(tPunto* punto, tColor* color) {
+	punto->pixel.B = color->B;
+	punto->pixel.G = color->G;
+	punto->pixel.R = color->R;
 }
 
