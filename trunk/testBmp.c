@@ -11,7 +11,7 @@ void testInicializarBmpData(tBitmapData* bmp_data) {
 	int fila = 0;
 	for (fila = 0; fila < bmp_data->ancho; fila++ ) {
 		int columna = 0;
-		for (columna = 0; columna < bmp_data->alto; columna) {
+		for (columna = 0; columna < bmp_data->alto; columna++) {
 			tPunto* puntoActual = &bmp_data->puntos[fila][columna];
 			if (!sonIguales(&puntoActual->pixel, &blanco)) {
 				printf("testInicializarBmpData: NO PASO");
