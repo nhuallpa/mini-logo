@@ -80,7 +80,7 @@ void salvarDatosVisuales(tBitmapData* bmp_data, FILE* output) {
 	int padding = bmp_data->ancho % 4;
 
 	int fila = 0;
-	for (fila = 0; fila < bmp_data->alto; fila++) {
+	for (fila = (bmp_data->alto - 1); fila >= 0 ; fila--) {
 		int columna = 0;
 		for (columna = 0; columna < bmp_data->ancho; columna++) {
 			tColor* pixel = &bmp_data->puntos[fila][columna].pixel;
@@ -110,3 +110,4 @@ FILE* abrirSalida(char* ruta) {
 void cerrarSalida(FILE* output) {
 	fclose(output);
 }
+

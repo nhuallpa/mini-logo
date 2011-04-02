@@ -20,25 +20,6 @@
 
 int main(int argc, char* argv[]) {
 
-	printf("tam uint %d", sizeof(uint));
-	printf("tam ushort %d", sizeof(ushort));
-
-	char* ruta = "salida.bmp";
-	tColor color;
-	color.B = 255;
-	color.R = 0;
-	color.G = 0;
-	tBitmapData* bmp = (tBitmapData*)malloc(sizeof(tBitmapData));
-	bmp->alto = 200;
-	bmp->ancho = 200;
-	inicializar(bmp);
-	// TODO: testInicializarBmpData
-	testInicializarBmpData(bmp);
-
-	pintarPunto(&bmp->puntos[0][0], &color);
-
-	publicar(bmp, ruta);
-	destruir(bmp);
-
+	testMainImage();
 	return 0;
 }

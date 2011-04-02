@@ -150,8 +150,10 @@ void inicializar(tBitmapData* bmp_data) {
 }
 
 void pintarPunto(tPunto* punto, tColor* color) {
-	punto->pixel.B = color->B;
-	punto->pixel.G = color->G;
-	punto->pixel.R = color->R;
+	if (punto && color) {
+		punto->pixel.B = color->B;
+		punto->pixel.G = color->G;
+		punto->pixel.R = color->R;
+	}
 }
 
