@@ -14,12 +14,26 @@
 #define CANT_PARAM_INV  1
 #include "bmp.h"
 #include "bmpVista.h"
+#include "dominioLogo.h"
 
-#include "testBmp.h"
 
 
 int main(int argc, char* argv[]) {
 
-	testMainImage();
+	char* instrucciones = "enun1.log";
+
+	FILE* fLogoInstrucciones = fopen(instrucciones, "rb");
+
+	tBitmapData* bmp_data = crearBmpData();
+	ejecutarComandos(fLogoInstrucciones, bmp_data);
+	destruir(bmp_data);
+
+
+	fclose(fLogoInstrucciones);
+
+
+
 	return 0;
 }
+
+

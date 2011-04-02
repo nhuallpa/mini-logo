@@ -101,6 +101,8 @@ int obtenerPuntosEntorno(tBitmapData* bmp,
 
 //  Para LogoMini
 
+tBitmapData* crearBmpData();
+
 void inicializar(tBitmapData* bmp);
 
 void pintarPunto(tPunto* punto, tColor* color);

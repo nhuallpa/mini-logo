@@ -29,7 +29,7 @@ void testMainImage() {
 	color.B = 255;
 	color.R = 0;
 	color.G = 0;
-	tBitmapData* bmp = (tBitmapData*)malloc(sizeof(tBitmapData));
+	tBitmapData* bmp = crearBmpData();
 	bmp->alto = 200;
 	bmp->ancho = 200;
 	inicializar(bmp);
