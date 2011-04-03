@@ -6,7 +6,7 @@
  Description : punto de entrada
  ============================================================================
 */
-#define TEST
+#define TEST_
 #include "testEstadosTortuga.h"
 #include "testListaRepetir.h"
 

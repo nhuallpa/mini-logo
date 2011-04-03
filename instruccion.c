@@ -77,6 +77,13 @@ tInstruccion* crearInstruccion(tInstruccion* instruccion) {
 	return nuevaInstruccion;
 }
 
+tBoolean esTipoInstruccion(tInstruccion* instruccion, tTipoInstruccion tipo) {
+	tBoolean result = FALSE;
+	if (instruccion && instruccion->idInstruccion == tipo) {
+		result = TRUE;
+	}
+	return result;
+}
 
 
 
