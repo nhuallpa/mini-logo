@@ -67,4 +67,16 @@ void mostrarInstruccionConsola(tInstruccion* instruccion) {
 											instruccion->valor);
 }
 
+tInstruccion* crearInstruccion(tInstruccion* instruccion) {
+	tInstruccion* nuevaInstruccion = NULL;
+	if (instruccion) {
+		nuevaInstruccion = (tInstruccion*)malloc(sizeof(tInstruccion));
+		nuevaInstruccion->idInstruccion = instruccion->idInstruccion;
+		nuevaInstruccion->valor = instruccion->valor;
+	}
+	return nuevaInstruccion;
+}
+
+
+
 

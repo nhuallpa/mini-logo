@@ -10,9 +10,10 @@
 #include "listaInstrucciones.h"
 #include "instruccion.h"
 #include "malloc.h"
+#include "testUnit.h"
 
 
-void mainTestSuiteLista();
+void testSuiteLista();
 
 void testReservarYLiberar();
 

@@ -8,28 +8,34 @@
 #include "listaInstrucciones.h"
 
 tNodo* crearListaInstruciones() {
-	tNodo* primero = (tNodo*)malloc(sizeof(tNodo));
-	primero->siguienteNodo = NULL;
+	tNodo* primero = crearNodo();
 	return primero;
 }
 
 
 void agregar(tNodo* raiz, tInstruccion* instruccion) {
 
-	tNodo* nuevoNodo = (tNodo*)malloc(sizeof(tNodo));
-	nuevoNodo->instruccion = (tInstruccion*)malloc(sizeof(tInstruccion));
-	nuevoNodo->siguienteNodo = NULL;
+	if (raiz && raiz->instruccion) {
+		//todo: pasar a crearNodo();
+		tNodo* nuevoNodo = crearNodo();
+		nuevoNodo->instruccion = crearInstruccion(instruccion);
 
-	nuevoNodo->instruccion->idInstruccion = instruccion->idInstruccion;
-	nuevoNodo->instruccion->valor = instruccion->valor;
+		tNodo* nodoAuxActual = raiz;
+		tNodo* ultimoNodo = NULL;
+		while (nodoAuxActual) {
+			ultimoNodo = nodoAuxActual;
+			nodoAuxActual = nodoAuxActual->siguienteNodo;
+		}
+		ultimoNodo->siguienteNodo = nuevoNodo;
+	} else if (raiz && raiz->instruccion == NULL) {
 
-	tNodo* nodoAuxActual = raiz;
-	tNodo* ultimoNodo = NULL;
-	while (nodoAuxActual) {
-		ultimoNodo = nodoAuxActual;
-		nodoAuxActual = nodoAuxActual->siguienteNodo;
+		raiz->instruccion = (tInstruccion*)malloc(sizeof(tInstruccion));
+		raiz->instruccion->idInstruccion = instruccion->idInstruccion;
+		raiz->instruccion->valor = instruccion->valor;
+
 	}
-	ultimoNodo->siguienteNodo = nuevoNodo;
+
+
 }
 
 void liberarListaInstrucciones(tNodo* raiz) {
@@ -44,5 +50,34 @@ void liberarListaInstrucciones(tNodo* raiz) {
 		nodoSiguiente = nodoALiberar->siguienteNodo;
 		free(nodoALiberar);
 	}
+}
+
+tEstadoRecorrido recuperarInstruccion(tNodo* raiz, tInstruccion* instruccion,
+								tPosicionado posicionamiento) {
+
+	tEstadoRecorrido estado = OK;
+	static tNodo* nodoActual;
+	if (posicionamiento == LIST_PRIMERO) {
+		nodoActual = raiz;
+	} else if (posicionamiento == LIST_SIGUIENTE) {
+		nodoActual = nodoActual->siguienteNodo;
+	}
+
+	if (nodoActual && nodoActual->instruccion && instruccion) {
+		instruccion->idInstruccion = nodoActual->instruccion->idInstruccion;
+		instruccion->valor = nodoActual->instruccion->valor;
+	} else {
+		estado = NO_HAY_SIG;
+	}
+
+	return estado;
+}
+
+
+tNodo* crearNodo() {
+	tNodo* nuevoNodo = (tNodo*)malloc(sizeof(tNodo));
+	nuevoNodo->instruccion = NULL;
+	nuevoNodo->siguienteNodo = NULL;
+	return nuevoNodo;
 }
 
