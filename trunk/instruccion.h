@@ -15,6 +15,11 @@
 #define CANT_INSTRUCCIONES 8
 #define ID_INVALIDO -1
 
+typedef enum {
+	I_ADELANTE, I_DERECHA, I_IZQUIERDA,
+	I_SIN_PLUMA, I_CON_PLUMA, I_REPEAT, I_END, I_FCOLOR
+} tTipoInstruccion;
+
 typedef struct {
 	int idInstruccion;
 	int valor;
@@ -65,6 +70,8 @@ void mostrarInstruccionConsola(tInstruccion* instruccion);
  *
  * */
 tInstruccion* crearInstruccion(tInstruccion* instruccion);
+
+tBoolean esTipoInstruccion(tInstruccion* instruccion, tTipoInstruccion tipo);
 
 
 #endif /* INSTRUCCION_H_ */

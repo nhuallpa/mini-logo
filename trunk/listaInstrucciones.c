@@ -16,7 +16,6 @@ tNodo* crearListaInstruciones() {
 void agregar(tNodo* raiz, tInstruccion* instruccion) {
 
 	if (raiz && raiz->instruccion) {
-		//todo: pasar a crearNodo();
 		tNodo* nuevoNodo = crearNodo();
 		nuevoNodo->instruccion = crearInstruccion(instruccion);
 
@@ -28,14 +27,11 @@ void agregar(tNodo* raiz, tInstruccion* instruccion) {
 		}
 		ultimoNodo->siguienteNodo = nuevoNodo;
 	} else if (raiz && raiz->instruccion == NULL) {
-
 		raiz->instruccion = (tInstruccion*)malloc(sizeof(tInstruccion));
 		raiz->instruccion->idInstruccion = instruccion->idInstruccion;
 		raiz->instruccion->valor = instruccion->valor;
 
 	}
-
-
 }
 
 void liberarListaInstrucciones(tNodo* raiz) {
@@ -54,7 +50,6 @@ void liberarListaInstrucciones(tNodo* raiz) {
 
 tEstadoRecorrido recuperarInstruccion(tNodo* raiz, tInstruccion* instruccion,
 								tPosicionado posicionamiento) {
-
 	tEstadoRecorrido estado = OK;
 	static tNodo* nodoActual;
 	if (posicionamiento == LIST_PRIMERO) {

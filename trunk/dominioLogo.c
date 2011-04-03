@@ -14,9 +14,6 @@ void(*hashColorear[CANT_COLORES])(tColor* color) = {
 	colorearBlanco, colorearNegro, colorearRojo, colorearVerde, colorearAzul
 };
 
-
-
-
 char* leerLinea(FILE* fLogoInstrucciones, char* bufferLinea) {
 	return fgets(bufferLinea, LONG_BUFFER, fLogoInstrucciones);
 }
@@ -31,19 +28,34 @@ void ejecutarInstrucciones(FILE* fLogoInstrucciones, tBitmapData* bmp_data) {
 
 	while (leerLinea(fLogoInstrucciones, bufferLinea) != NULL){
 		if (leerInstruccion(&instruccionesActual, bufferLinea) == OK) {
-
 			ejecutarInstruccion(&instruccionesActual, &entornoActual);
-			// ver si hay bloque a repetir en el entorno y ejecutar
+
+			if (entornoActual.armarBloqueRepeat &&
+				!esTipoInstruccion(&instruccionesActual, I_REPEAT) &&
+				!esTipoInstruccion(&instruccionesActual, I_END)) {
+
+				agregar(entornoActual.bloqueRepeat, &instruccionesActual);
+			}
 		}
 	}
+
+	liberarEntorno(&entornoActual);
 
 }
 
 void inicializarEntorno(tEntornoEjecucion* entornoActual, tBitmapData* bmp_data) {
 	entornoActual->terreno = bmp_data;
 	inicializarTortuga(&entornoActual->tortuga);
-	// Todo: incializar lista repeat. luego destruir
-	//entornoActual
+	entornoActual->armarBloqueRepeat = FALSE;
+	// No lo creo aca porque se crear cuando encuentra un repeat como instruccion
+	//entornoActual->bloqueRepeat = crearListaInstruciones();
+}
+
+void liberarEntorno(tEntornoEjecucion* entornoActual) {
+	// se libera cuando llega la instruccion End despues
+	// de ejecuatar el bloque
+	// libero por las dudas.
+	liberarListaInstrucciones(entornoActual->bloqueRepeat);
 }
 
 void inicializarTortuga(tTortuga* tortuga) {
@@ -62,7 +74,7 @@ void ejecutarInstruccion(tInstruccion* instruccion, tEntornoEjecucion* entorno) 
 
 void iAdelante(tInstruccion* instruccionesActual,
 				tEntornoEjecucion* entornoActual){
-	printf("adelante \n");
+	//printf("adelante \n");
 }
 
 void iDerecha(tInstruccion* instruccionesActual,
@@ -100,12 +112,36 @@ void iConPluma(tInstruccion* instruccionesActual,
 
 void iRepeate(tInstruccion* instruccionesActual,
 				tEntornoEjecucion* entornoActual){
-	printf("repetir \n");
+	entornoActual->bloqueRepeat = crearListaInstruciones();
+	entornoActual->armarBloqueRepeat = TRUE;
+	entornoActual->nroRepeticiones = instruccionesActual->valor;
+
 }
 
-void iEnd(tInstruccion* instruccionesActual,
-				tEntornoEjecucion* entornoActual){
-	printf("End \n");
+void iEnd(tInstruccion* instruccionEnd, tEntornoEjecucion* entornoActual){
+
+	entornoActual->nroRepeticiones = entornoActual->nroRepeticiones - 1;
+	entornoActual->armarBloqueRepeat = FALSE;
+
+	while (entornoActual->nroRepeticiones > 0) {
+		tInstruccion instruccionEnBloque;
+
+		tEstadoRecorrido estadoRecorrido =
+		recuperarInstruccion(entornoActual->bloqueRepeat,
+							 &instruccionEnBloque,
+							 LIST_PRIMERO);
+
+		while ( estadoRecorrido ==  ENCONTRADO) {
+			ejecutarInstruccion(&instruccionEnBloque, entornoActual);
+			estadoRecorrido = recuperarInstruccion(entornoActual->bloqueRepeat,
+												   &instruccionEnBloque,
+												   LIST_SIGUIENTE);
+		}
+
+		entornoActual->nroRepeticiones = entornoActual->nroRepeticiones - 1;
+	}
+	liberarListaInstrucciones(entornoActual->bloqueRepeat);
+	entornoActual->bloqueRepeat = NULL;
 }
 
 void iFColor(tInstruccion* instruccionesActual,

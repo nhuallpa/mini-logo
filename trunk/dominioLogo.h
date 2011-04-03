@@ -11,7 +11,9 @@
 #include <stdio.h>
 #include "bmp.h"
 #include "instruccion.h"
+#include "listaInstrucciones.h"
 #include "common.h"
+
 
 typedef struct {
 	int x;
@@ -26,8 +28,9 @@ typedef struct {
 typedef struct {
 	tBitmapData* terreno;
 	tTortuga tortuga;
-	//TODO: Ver tipo de lista
-	//tListaRepeat listaRepeat;
+	tNodo* bloqueRepeat;
+	tBoolean armarBloqueRepeat;
+	int nroRepeticiones;
 } tEntornoEjecucion;
 
 
@@ -49,6 +52,8 @@ void ejecutarInstrucciones(FILE* fLogoInstrucciones, tBitmapData* bmp_data);
 void ejecutarInstruccion(tInstruccion* instruccion, tEntornoEjecucion* entorno);
 
 void inicializarEntorno(tEntornoEjecucion* entornoActual, tBitmapData* bmp_data);
+
+void liberarEntorno(tEntornoEjecucion* entornoActual);
 
 /*
  * Deja en estado inicial valido a una variable tortuga
