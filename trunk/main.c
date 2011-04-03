@@ -6,8 +6,8 @@
  Description : punto de entrada
  ============================================================================
 */
-
-
+#define TEST
+#include "testEstadosTortuga.h"
 
 #include <stdio.h>
 #include "color.h"
@@ -15,21 +15,20 @@
 #include "bmpVista.h"
 #include "dominioLogo.h"
 
+
+
 int main(int argc, char* argv[]) {
 
+#if defined(TEST)
+	testSuiteTortuga();
+#else
 	char* instrucciones = "enun1.log";
-
 	FILE* fLogoInstrucciones = fopen(instrucciones, "rb");
-
 	tBitmapData* bmp_data = crearBmpData();
 	ejecutarInstrucciones(fLogoInstrucciones, bmp_data);
 	destruirBMPData(bmp_data);
-
-
 	fclose(fLogoInstrucciones);
-
-
-
+#endif
 	return 0;
 }
 

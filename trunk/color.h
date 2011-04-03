@@ -11,6 +11,8 @@
 #include <stdlib.h>
 #include "common.h"
 
+#define CANT_COLORES 5
+
 typedef struct  {
 	unsigned char R;
 	unsigned char G;
@@ -26,5 +28,15 @@ tColor tomarColor(char** argv);
  * Verifica que dos colores sean igual
  * */
 tBoolean sonIguales(tColor* color, tColor* otroColor);
+
+void colorearBlanco(tColor* color);
+
+void colorearNegro(tColor* color);
+
+void colorearRojo(tColor* color);
+
+void colorearVerde(tColor* color);
+
+void colorearAzul(tColor* color);
 
 #endif /* COLOR_H_ */
