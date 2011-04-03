@@ -10,6 +10,8 @@
 #ifndef __COMMON_H_
 #define __COMMON_H_
 
+#define LONG_BUFFER 50
+
 typedef enum {FALSE = 0,  TRUE = 1} tBoolean;
 
 typedef enum {ERROR = 0,  OK = 1} tEstado;

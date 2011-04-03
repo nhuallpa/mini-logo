@@ -49,5 +49,5 @@ void testMainImage() {
 	}
 
 	publicar(bmp, ruta);
-	destruir(bmp);
+	destruirBMPData(bmp);
 }
