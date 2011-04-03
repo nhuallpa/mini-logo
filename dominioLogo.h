@@ -18,8 +18,9 @@ typedef struct {
 	int y;
 	int angulo;
 	tBoolean conPluma;
-	tColor* color;
+	tColor color;
 } tTortuga;
+
 
 
 typedef struct {
@@ -35,14 +36,20 @@ typedef struct {
  */
 char* leerLinea(FILE* fLogoInstrucciones, char* bufferLinea);
 
-
-//  Ejecuta en orden la lectura, interpretacion y ejecucion de
-//  las instrucciones
+/*
+ * Ejecuta en orden la lectura, interpretacion y ejecucion de
+ * las instrucciones
+ */
 void ejecutarInstrucciones(FILE* fLogoInstrucciones, tBitmapData* bmp_data);
 
 void ejecutarInstruccion(tInstruccion* instruccion, tEntornoEjecucion* entorno);
 
 void inicializarEntorno(tEntornoEjecucion* entornoActual, tBitmapData* bmp_data);
+
+/*
+ * Deja en estado inicial valido a una variable tortuga
+ * */
+void inicializarTortuga(tTortuga* tortuga);
 
 void iAdelante(tInstruccion* instruccionesActual,
 				tEntornoEjecucion* entornoActual);
@@ -70,7 +77,4 @@ void iFColor(tInstruccion* instruccionesActual,
 
 
 
-
-
-
-#endif /* DOMINIOLOGO_H_ */
+#endif /* __DOMINIOLOGO_H_ */

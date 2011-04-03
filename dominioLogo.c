@@ -10,10 +10,16 @@ void(*hashInstrucciones[])(tInstruccion* i,tEntornoEjecucion* e) = {
 		iAdelante, iDerecha, iIzquierda, iSinPluma, iConPluma, iRepeate, iEnd, iFColor
 };
 
+void(*hashColorear[CANT_COLORES])(tColor* color) = {
+	colorearBlanco, colorearNegro, colorearRojo, colorearVerde, colorearAzul
+};
+
+
+
+
 char* leerLinea(FILE* fLogoInstrucciones, char* bufferLinea) {
 	return fgets(bufferLinea, LONG_BUFFER, fLogoInstrucciones);
 }
-
 
 void ejecutarInstrucciones(FILE* fLogoInstrucciones, tBitmapData* bmp_data) {
 
@@ -35,20 +41,23 @@ void ejecutarInstrucciones(FILE* fLogoInstrucciones, tBitmapData* bmp_data) {
 
 void inicializarEntorno(tEntornoEjecucion* entornoActual, tBitmapData* bmp_data) {
 	entornoActual->terreno = bmp_data;
-	entornoActual->tortuga.x = 0;
-	entornoActual->tortuga.y = 0;
-	entornoActual->tortuga.angulo = 0;
-	entornoActual->tortuga.conPluma = FALSE;
+	inicializarTortuga(&entornoActual->tortuga);
 	// Todo: incializar lista repeat. luego destruir
 	//entornoActual
 }
 
+void inicializarTortuga(tTortuga* tortuga) {
+	tortuga->angulo = 0;
+	tortuga->conPluma = TRUE;
+	tortuga->x = 0;
+	tortuga->y = 0;
+	tortuga->color.R = 0;
+	tortuga->color.G = 0;
+	tortuga->color.B = 0;
+}
+
 void ejecutarInstruccion(tInstruccion* instruccion, tEntornoEjecucion* entorno) {
-
-
-
 	hashInstrucciones[instruccion->idInstruccion](instruccion, entorno);
-
 }
 
 void iAdelante(tInstruccion* instruccionesActual,
@@ -58,23 +67,35 @@ void iAdelante(tInstruccion* instruccionesActual,
 
 void iDerecha(tInstruccion* instruccionesActual,
 				tEntornoEjecucion* entornoActual){
-	printf("Derecha \n");
 
+	int sumaAngulos = entornoActual->tortuga.angulo + instruccionesActual->valor;
+	if (sumaAngulos < 360 ) {
+		entornoActual->tortuga.angulo = entornoActual->tortuga.angulo +
+													instruccionesActual->valor;
+	} else {
+		entornoActual->tortuga.angulo = sumaAngulos - 360;
+	}
 }
 
 void iIzquierda(tInstruccion* instruccionesActual,
 				tEntornoEjecucion* entornoActual){
-	printf("IZQUIEDA \n");
+
+	tInstruccion instAux;
+	instAux.idInstruccion = instruccionesActual->idInstruccion;
+	instAux.valor = 360 - instruccionesActual->valor;
+
+	iDerecha(&instAux, entornoActual);
+
 }
 
 void iSinPluma(tInstruccion* instruccionesActual,
 				tEntornoEjecucion* entornoActual){
-	printf("Sin pluma \n");
+	entornoActual->tortuga.conPluma = FALSE;
 }
 
 void iConPluma(tInstruccion* instruccionesActual,
 				tEntornoEjecucion* entornoActual){
-	printf("con Pluma \n");
+	entornoActual->tortuga.conPluma = TRUE;
 }
 
 void iRepeate(tInstruccion* instruccionesActual,
@@ -84,11 +105,11 @@ void iRepeate(tInstruccion* instruccionesActual,
 
 void iEnd(tInstruccion* instruccionesActual,
 				tEntornoEjecucion* entornoActual){
-	printf("end \n");
+	printf("End \n");
 }
 
 void iFColor(tInstruccion* instruccionesActual,
 				tEntornoEjecucion* entornoActual){
-	printf("color \n");
+	hashColorear[instruccionesActual->valor](&entornoActual->tortuga.color);
 }
 

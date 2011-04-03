@@ -27,3 +27,32 @@ tBoolean sonIguales(tColor* color, tColor* otroColor) {
 	return iguales;
 }
 
+void colorearBlanco(tColor* color) {
+	color->R = 255;
+	color->G = 255;
+	color->B = 255;
+}
+
+void colorearNegro(tColor* color) {
+	color->R = 0;
+	color->G = 0;
+	color->B = 0;
+}
+
+void colorearRojo(tColor* color) {
+	color->R = 255;
+	color->G = 0;
+	color->B = 0;
+}
+
+void colorearVerde(tColor* color) {
+	color->R = 0;
+	color->G = 255;
+	color->B = 0;
+}
+
+void colorearAzul(tColor* color) {
+	color->R = 0;
+	color->G = 0;
+	color->B = 255;
+}
