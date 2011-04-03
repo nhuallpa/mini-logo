@@ -55,6 +55,7 @@ int tomarValor(char* strInstruccion);
 void cargarInstruccion(char* strInstruccion, tInstruccion* instruccion);
 
 
+void mostrarInstruccionConsola(tInstruccion* instruccion);
 
 
 #endif /* INSTRUCCION_H_ */

@@ -62,4 +62,9 @@ int tomarValor(char* strInstruccion) {
 	return valor;
 }
 
+void mostrarInstruccionConsola(tInstruccion* instruccion) {
+	printf("instruccion %d valor %d \n", instruccion->idInstruccion,
+											instruccion->valor);
+}
+
 

@@ -8,6 +8,7 @@
 */
 #define TEST
 #include "testEstadosTortuga.h"
+#include "testListaRepetir.h"
 
 #include <stdio.h>
 #include "color.h"
@@ -21,6 +22,7 @@ int main(int argc, char* argv[]) {
 
 #if defined(TEST)
 	testSuiteTortuga();
+	mainTestSuiteLista();
 #else
 	char* instrucciones = "enun1.log";
 	FILE* fLogoInstrucciones = fopen(instrucciones, "rb");

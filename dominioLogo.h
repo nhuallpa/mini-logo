@@ -42,6 +42,10 @@ char* leerLinea(FILE* fLogoInstrucciones, char* bufferLinea);
  */
 void ejecutarInstrucciones(FILE* fLogoInstrucciones, tBitmapData* bmp_data);
 
+/*
+ * Ejecuta procedimiento que corresponda a la instruccion para que
+ * actualizice el entorno que fue pasado por parametro
+ * */
 void ejecutarInstruccion(tInstruccion* instruccion, tEntornoEjecucion* entorno);
 
 void inicializarEntorno(tEntornoEjecucion* entornoActual, tBitmapData* bmp_data);
