@@ -22,7 +22,7 @@ int main(int argc, char* argv[]) {
 
 #if defined(TEST)
 	testSuiteTortuga();
-	mainTestSuiteLista();
+	testSuiteLista();
 #else
 	char* instrucciones = "enun1.log";
 	FILE* fLogoInstrucciones = fopen(instrucciones, "rb");

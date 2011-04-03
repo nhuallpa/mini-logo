@@ -10,6 +10,7 @@
 #include "common.h"
 #include "string.h"
 #include <stdio.h>
+#include <malloc.h>
 
 #define CANT_INSTRUCCIONES 8
 #define ID_INVALIDO -1
@@ -56,6 +57,14 @@ void cargarInstruccion(char* strInstruccion, tInstruccion* instruccion);
 
 
 void mostrarInstruccionConsola(tInstruccion* instruccion);
+
+/*
+ * Crea una nueva instancias de instruccion en el Heap
+ * Retorna el puntero a la instruccion creada con memoria dinamica
+ * Retorna NULL sin el parametro instruccion es NULL
+ *
+ * */
+tInstruccion* crearInstruccion(tInstruccion* instruccion);
 
 
 #endif /* INSTRUCCION_H_ */

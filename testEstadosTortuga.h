@@ -10,6 +10,7 @@
 
 #include "bmp.h"
 #include "dominioLogo.h"
+#include "testUnit.h"
 
 void testSuiteTortuga();
 
@@ -29,12 +30,5 @@ void testPlumas();
 
 void testColorear();
 
-// testCommon
-
-void assertEqualsInt(int esperado, int resultado, char* nombreTest);
-
-void assertTrue(tBoolean expresion, char* nombreTest);
-
-void assertFalse(tBoolean expresion, char* nombreTest);
 
 #endif /* TESTESTADOSTORTUGA_H_ */

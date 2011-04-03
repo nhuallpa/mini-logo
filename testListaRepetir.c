@@ -7,7 +7,7 @@
 
 #include "testListaRepetir.h"
 
-void mainTestSuiteLista() {
+void testSuiteLista() {
 
 	testReservarYLiberar();
 	testAgregarYRecuperar();
@@ -38,7 +38,6 @@ void testReservarYLiberar() {
 }
 
 void testAgregarYRecuperar() {
-	// todo: probar esto
 	tInstruccion instruccion;
 
 	tNodo* listaInstrucciones = crearListaInstruciones();
@@ -53,17 +52,25 @@ void testAgregarYRecuperar() {
 	instruccion.valor = 3;
 	agregar(listaInstrucciones, &instruccion);
 
+	instruccion.idInstruccion = 0;
+	instruccion.valor = 0;
+
 	// recuperamos y verificamos
-//	recuperarInstruccion(listaInstrucciones, &instruccion, LIST_PRIMERO);
-//	assertEqualsInt(1, instruccion->idInstruccion);
-//	assertEqualsInt(1, instruccion->valor);
-//	recuperarInstruccion(listaInstrucciones, &instruccion, LIST_SIGUIENTE);
-//	assertEqualsInt(2, instruccion->idInstruccion);
-//	assertEqualsInt(2, instruccion->valor);
-//	recuperarInstruccion(listaInstrucciones, &instruccion, LIST_SIGUIENTE);
-//	assertEqualsInt(3, instruccion->idInstruccion);
-//	assertEqualsInt(3, instruccion->valor);
+	recuperarInstruccion(listaInstrucciones, &instruccion, LIST_PRIMERO);
+	assertEqualsInt(1, instruccion.idInstruccion, "testAgregarYRecuperar");
+	assertEqualsInt(1, instruccion.valor, "testAgregarYRecuperar");
+	recuperarInstruccion(listaInstrucciones, &instruccion, LIST_SIGUIENTE);
+	assertEqualsInt(2, instruccion.idInstruccion, "testAgregarYRecuperar");
+	assertEqualsInt(2, instruccion.valor, "testAgregarYRecuperar");
+	recuperarInstruccion(listaInstrucciones, &instruccion, LIST_SIGUIENTE);
+	assertEqualsInt(3, instruccion.idInstruccion, "testAgregarYRecuperar");
+	assertEqualsInt(3, instruccion.valor, "testAgregarYRecuperar");
+
+	tEstadoRecorrido estado = recuperarInstruccion(listaInstrucciones, &instruccion, LIST_SIGUIENTE);
+	assertTrue((estado == NO_HAY_SIG),"testAgregarYRecuperar");
+
 	// liberamos recursos
+
 	liberarListaInstrucciones(listaInstrucciones);
 
 }
