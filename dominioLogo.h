@@ -108,7 +108,7 @@ void iFColor(tInstruccion* instruccionesActual,
  * en pasos tortuga(1pixel son 100 pasos tortuga).
  * */
 void calcular_xy(int x0, int y0, int angle,
-					int d, int *x1, int *y1 );
+					int d, int *x1, int *y1);
 
 /*
  * Pinta un segmento indicado por las posiciones fin y inicio en escritas

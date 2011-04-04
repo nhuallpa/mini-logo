@@ -14,7 +14,6 @@ tNodo* crearListaInstruciones() {
 
 
 void agregar(tNodo* raiz, tInstruccion* instruccion) {
-
 	if (raiz && raiz->instruccion) {
 		tNodo* nuevoNodo = crearNodo();
 		nuevoNodo->instruccion = crearInstruccion(instruccion);
@@ -30,12 +29,10 @@ void agregar(tNodo* raiz, tInstruccion* instruccion) {
 		raiz->instruccion = (tInstruccion*)malloc(sizeof(tInstruccion));
 		raiz->instruccion->idInstruccion = instruccion->idInstruccion;
 		raiz->instruccion->valor = instruccion->valor;
-
 	}
 }
 
 void liberarListaInstrucciones(tNodo* raiz) {
-
 	tNodo* nodoSiguiente = raiz;
 	tNodo* nodoALiberar = NULL;
 	while (nodoSiguiente) {

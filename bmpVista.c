@@ -51,11 +51,11 @@ void inicializarInfoHeader(tBitMapInfoHeader* bmp_info_hader,
 }
 
 void salvarFileHeader(tBitmapFileHeader* bmp_file_header, FILE* output) {
-	fwrite(&bmp_file_header->bfType, sizeof(ushort),1,output);
-	fwrite(&bmp_file_header->bfSize, sizeof(uint),1,output);
-	fwrite(&bmp_file_header->bfReserved1, sizeof(ushort),1,output);
-	fwrite(&bmp_file_header->bfReserved2, sizeof(ushort),1,output);
-	fwrite(&bmp_file_header->bfOffBits, sizeof(uint),1,output);
+	fwrite(&bmp_file_header->bfType, sizeof(ushort), 1, output);
+	fwrite(&bmp_file_header->bfSize, sizeof(uint), 1, output);
+	fwrite(&bmp_file_header->bfReserved1, sizeof(ushort), 1, output);
+	fwrite(&bmp_file_header->bfReserved2, sizeof(ushort), 1, output);
+	fwrite(&bmp_file_header->bfOffBits, sizeof(uint), 1, output);
 }
 
 void salvarInfoHeader(tBitMapInfoHeader* bmp_info_header, FILE* output) {

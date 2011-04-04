@@ -35,7 +35,7 @@ int main(int argc, char* argv[]) {
 		destruirBMPData(bmp_data);
 	}
 
-	if (argc == 3) {
+	if (estado == EXITOSO && argc == 3) {
 		fclose(fLogoInstrucciones);
 	}
 	return estado;
