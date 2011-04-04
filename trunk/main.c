@@ -3,30 +3,19 @@
  Name        : main.c
  Author      : Huallpa Nestor
  Version     : 1.0
- Description : punto de entrada
+ Description : punto de entrada del Mini interprete Logo
  ============================================================================
 */
-#define TEST_
-#include "testEstadosTortuga.h"
-#include "testListaRepetir.h"
-#include "testBmp.h"
+
 #include <stdio.h>
 #include "color.h"
 #include "bmp.h"
 #include "bmpVista.h"
 #include "dominioLogo.h"
 
-
-
 int main(int argc, char* argv[]) {
-
-#if defined(TEST)
-	testSuiteTortuga();
-	testSuiteLista();
-	testSuiteBMP();
-#else
 	int estado = EXITOSO;
-	FILE* fLogoInstrucciones;
+	FILE* fLogoInstrucciones = NULL;
 	char* imagenSalida = argv[1];
 
 	if (argc == 3) {
@@ -49,9 +38,6 @@ int main(int argc, char* argv[]) {
 	if (argc == 3) {
 		fclose(fLogoInstrucciones);
 	}
-
-#endif
-	printf(" estado : %d paramtros %d", estado, argc);
 	return estado;
 }
 

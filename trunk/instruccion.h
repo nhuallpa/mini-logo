@@ -71,6 +71,9 @@ void mostrarInstruccionConsola(tInstruccion* instruccion);
  * */
 tInstruccion* crearInstruccion(tInstruccion* instruccion);
 
+/*
+ * Verifica el tipo de instruccion
+ * */
 tBoolean esTipoInstruccion(tInstruccion* instruccion, tTipoInstruccion tipo);
 
 

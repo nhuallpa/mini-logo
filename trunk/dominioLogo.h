@@ -57,10 +57,18 @@ void ejecutarInstrucciones(FILE* fLogoInstrucciones, tBitmapData* bmp_data);
  * Ejecuta procedimiento que corresponda a la instruccion para que
  * actualizice el entorno que fue pasado por parametro
  * */
-void ejecutarInstruccion(tInstruccion* instruccion, tEntornoEjecucion* entorno);
+void ejecutarInstruccion(tInstruccion* instruccion,
+						tEntornoEjecucion* entorno);
 
-void inicializarEntorno(tEntornoEjecucion* entornoActual, tBitmapData* bmp_data);
+/*
+ * Deja en estado valido al entorno de ejecucion.
+ * */
+void inicializarEntorno(tEntornoEjecucion* entornoActual,
+						tBitmapData* bmp_data);
 
+/*
+ * Libera los recursos tomados en el uso de un entorno
+ * */
 void liberarEntorno(tEntornoEjecucion* entornoActual);
 
 /*
@@ -68,6 +76,8 @@ void liberarEntorno(tEntornoEjecucion* entornoActual);
  * */
 void inicializarTortuga(tTortuga* tortuga);
 
+/* Procedimientos que ejecutan las diferentes intrucciones Logo
+ * */
 void iAdelante(tInstruccion* instruccionesActual,
 				tEntornoEjecucion* entornoActual);
 
@@ -92,8 +102,18 @@ void iEnd(tInstruccion* instruccionesActual,
 void iFColor(tInstruccion* instruccionesActual,
 				tEntornoEjecucion* entornoActual);
 
-void calcular_xy( int x0, int y0, int angle, int d, int *x1, int *y1 );
+/*
+ * Cacula las coordenas x e y finales en paso tortuga, tomando en cuenta
+ * las coordenadas de origen, el angulo y la distancia. Esta ultima tambien
+ * en pasos tortuga(1pixel son 100 pasos tortuga).
+ * */
+void calcular_xy(int x0, int y0, int angle,
+					int d, int *x1, int *y1 );
 
+/*
+ * Pinta un segmento indicado por las posiciones fin y inicio en escritas
+ * en pixeles. Se pinta deacuerdo al entorno en el que se ejecute.
+ * */
 void pintar(tPosicion* posIni,
 			tPosicion* posFin,
 			tEntornoEjecucion* entorno);

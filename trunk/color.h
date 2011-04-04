@@ -29,8 +29,9 @@ tColor tomarColor(char** argv);
  * */
 tBoolean sonIguales(tColor* color, tColor* otroColor);
 
-void mostrarColorConsola(tColor* color);
-
+/*
+ * Procedimiento que colorean el puntero color;
+ * */
 void colorearBlanco(tColor* color);
 
 void colorearNegro(tColor* color);

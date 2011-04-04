@@ -7,27 +7,22 @@
 #include "bmpVista.h"
 
 void publicar(tBitmapData* bmp_data, char* ruta) {
-
 	tBmp bmp;
 	bmp.bmp_data = bmp_data;
-
-
 	inicializarFileHeader(&bmp.bmp_file_header);
 	inicializarInfoHeader(&bmp.bmp_info_hader, bmp.bmp_data);
-
 	FILE* output = abrirSalida(ruta);
 	// Todo: se puede pasar a una libreria bmpFile.h
 	salvarFileHeader(&bmp.bmp_file_header, output);
 	salvarInfoHeader(&bmp.bmp_info_hader, output);
 	salvarDatosVisuales(bmp.bmp_data, output);
 	cerrarSalida(output);
-
 }
 
 
 void inicializarFileHeader(tBitmapFileHeader* bmp_file_header) {
 	if (bmp_file_header) {
-		memcpy(&(bmp_file_header->bfType),"BM",2);
+		memcpy(&(bmp_file_header->bfType), "BM", 2);
 		bmp_file_header->bfSize = 0;
 		bmp_file_header->bfReserved1 = bmp_file_header->bfReserved2 = 0;
 		bmp_file_header->bfOffBits = 54;
@@ -54,11 +49,11 @@ void inicializarInfoHeader(tBitMapInfoHeader* bmp_info_hader,
 }
 
 void salvarFileHeader(tBitmapFileHeader* bmp_file_header, FILE* output) {
-	fwrite(&bmp_file_header->bfType,sizeof(ushort),1,output);
-	fwrite(&bmp_file_header->bfSize,sizeof(uint),1,output);
-	fwrite(&bmp_file_header->bfReserved1,sizeof(ushort),1,output);
-	fwrite(&bmp_file_header->bfReserved2,sizeof(ushort),1,output);
-	fwrite(&bmp_file_header->bfOffBits,sizeof(uint),1,output);
+	fwrite(&bmp_file_header->bfType, sizeof(ushort),1,output);
+	fwrite(&bmp_file_header->bfSize, sizeof(uint),1,output);
+	fwrite(&bmp_file_header->bfReserved1, sizeof(ushort),1,output);
+	fwrite(&bmp_file_header->bfReserved2, sizeof(ushort),1,output);
+	fwrite(&bmp_file_header->bfOffBits, sizeof(uint),1,output);
 }
 
 void salvarInfoHeader(tBitMapInfoHeader* bmp_info_header, FILE* output) {
@@ -76,32 +71,24 @@ void salvarInfoHeader(tBitMapInfoHeader* bmp_info_header, FILE* output) {
 }
 
 void salvarDatosVisuales(tBitmapData* bmp_data, FILE* output) {
-
 	int padding = bmp_data->ancho % 4;
-
 	int fila = 0;
 	for (fila = (bmp_data->alto - 1); fila >= 0 ; fila--) {
 		int columna = 0;
 		for (columna = 0; columna < bmp_data->ancho; columna++) {
 			tColor* pixel = &bmp_data->puntos[fila][columna].pixel;
-			fwrite(&pixel->B, sizeof(uchar),1,output);
-			fwrite(&pixel->G, sizeof(uchar),1,output);
-			fwrite(&pixel->R, sizeof(uchar),1,output);
+			fwrite(&pixel->B, sizeof(uchar), 1, output);
+			fwrite(&pixel->G, sizeof(uchar), 1, output);
+			fwrite(&pixel->R, sizeof(uchar), 1, output);
 		}
-
 		if (!padding) {
 			int i = 0;
 			for (i = 0; i < padding; i++) {
-				putc(0,output);
+				putc(0, output);
 			}
 		}
-
 	}
-
-
 }
-
-
 
 FILE* abrirSalida(char* ruta) {
 	return fopen(ruta, "w+");
