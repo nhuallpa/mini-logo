@@ -27,10 +27,6 @@ tBoolean sonIguales(tColor* color, tColor* otroColor) {
 	return iguales;
 }
 
-void mostrarColorConsola(tColor* color) {
-	printf("R %d G %d B %d", color->R, color->G, color->B );
-}
-
 void colorearBlanco(tColor* color) {
 	color->R = 255;
 	color->G = 255;

@@ -74,16 +74,20 @@ typedef struct {
 } tBmp;
 
 
-
 /*
  * Crea la imagen bmp en el disco con la ruta indicada
  * en el parametro
  * */
 void publicar(tBitmapData* bmp, char* ruta);
 
-
+/*
+ * Inicializa informacion para el arhivo de la imagen
+ * */
 void inicializarFileHeader(tBitmapFileHeader* bmp_file_header);
 
+/*
+ * Inicializa informacion sobre la imagen
+ */
 void inicializarInfoHeader(tBitMapInfoHeader* bmp_info_hader,
 							tBitmapData* bmp_data);
 
@@ -103,8 +107,14 @@ void salvarInfoHeader(tBitMapInfoHeader* bmp_info_header, FILE* output);
  * */
 void salvarDatosVisuales(tBitmapData* bmp_data, FILE* output);
 
+/*
+ * Abre un archivo para la ruta especificada en el parametro
+ */
 FILE* abrirSalida(char* ruta);
 
+/*
+ * Cierra la salida del archivo
+ * */
 void cerrarSalida(FILE* output);
 
 
