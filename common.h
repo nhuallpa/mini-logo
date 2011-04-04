@@ -21,6 +21,8 @@ typedef enum {NO_HAY_SIG = 0,  ENCONTRADO = 1} tEstadoRecorrido;
 typedef enum {EXITOSO = 0,  NOEXISTE_IMAGEN = 1, CANT_PARAM_INV = 3 } tEstadoEjecucion;
 
 
+
+
 #endif /* COMMON_H_ */
 
 

@@ -1,6 +1,11 @@
 
 #include "testBmp.h"
 
+void testSuiteBMP() {
+
+	testMainImage();
+}
+
 void testInicializarBmpData(tBitmapData* bmp_data) {
 
 	tColor blanco;
@@ -32,7 +37,7 @@ void testMainImage() {
 	tBitmapData* bmp = crearBmpData();
 	bmp->alto = 200;
 	bmp->ancho = 200;
-	inicializar(bmp);
+	inicializarBmp(bmp);
 	// TODO: testInicializarBmpData
 	testInicializarBmpData(bmp);
 

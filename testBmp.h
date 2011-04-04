@@ -6,6 +6,8 @@
 #include "bmpVista.h"
 #include "bmp.h"
 
+void testSuiteBMP();
+
 void testInicializarBmpData(tBitmapData* bmp_data);
 
 

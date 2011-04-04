@@ -15,6 +15,11 @@
 #define MAX_COORD 500
 
 typedef struct {
+	int x;
+	int y;
+}tPosicion;
+
+typedef struct {
 	void* lider;
 	tColor pixel;
 } tPunto;
@@ -103,8 +108,12 @@ int obtenerPuntosEntorno(tBitmapData* bmp,
 
 tBitmapData* crearBmpData();
 
-void inicializar(tBitmapData* bmp);
+void inicializarBmp(tBitmapData* bmp);
 
 void pintarPunto(tPunto* punto, tColor* color);
+
+tBoolean validaPosicion(int x0, int y0, tBitmapData* bmp_terreno);
+
+void pintarPosicion(int x0, int y0,tBitmapData* bmp_terreno,tColor* color);
 
 #endif /* BMP_H_ */

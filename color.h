@@ -29,6 +29,8 @@ tColor tomarColor(char** argv);
  * */
 tBoolean sonIguales(tColor* color, tColor* otroColor);
 
+void mostrarColorConsola(tColor* color);
+
 void colorearBlanco(tColor* color);
 
 void colorearNegro(tColor* color);
