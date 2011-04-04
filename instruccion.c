@@ -41,7 +41,7 @@ int buscarIdInstruccion(char* strInstruccion) {
 	int idInstruccion = ID_INVALIDO;
 	int indice = 0;
 	for ( indice = 0; indice < CANT_INSTRUCCIONES; indice++) {
-		int encontrado = strnicmp(strInstruccion,
+		int encontrado = strncmp(strInstruccion,
 									listInstrucciones[indice],
 									strlen(listInstrucciones[indice]));
 

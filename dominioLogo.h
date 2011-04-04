@@ -9,6 +9,7 @@
 #define __DOMINIOLOGO_H_
 
 #define TAMANIO_MAX 200
+#define MI_PI		3.14159265358979323846
 
 #include <stdio.h>
 #include <math.h>

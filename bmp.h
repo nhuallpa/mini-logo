@@ -103,17 +103,35 @@ int obtenerPuntosEntorno(tBitmapData* bmp,
 						 tPunto*
 						 listaPuntos[]);
 
-
+// todo: Borra los metodos que no se usan
 //  Para LogoMini
-
+/*
+ * Retorta el puntro a un tBitmapData que tiene reservado con memoria dinamica
+ */
 tBitmapData* crearBmpData();
 
+/*
+ * Inicializa el tBitmapData de color blanco
+ * Pre: necesita tener cargado las dimensiones
+ */
 void inicializarBmp(tBitmapData* bmp);
 
+/*
+ * Pinta el pixel que esta en el punto que se pasa por parametro
+ * */
 void pintarPunto(tPunto* punto, tColor* color);
 
+/*
+ * Verifica que los Xo y Yo caigan dentro de las dimensiones
+ * del terreno a pintar
+ */
 tBoolean validaPosicion(int x0, int y0, tBitmapData* bmp_terreno);
 
-void pintarPosicion(int x0, int y0,tBitmapData* bmp_terreno,tColor* color);
+/*
+ * Modifica el terreno pintando en las coordenas indicadas con el color
+ * pasado por parametro
+ * Pre: Las coordenas deben ser validas
+ */
+void pintarPosicion(int x0, int y0,tBitmapData* bmp_terreno, tColor* color);
 
 #endif /* BMP_H_ */

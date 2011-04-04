@@ -187,8 +187,8 @@ void iFColor(tInstruccion* instruccionesActual,
 
 void calcular_xy( int x0, int y0, int angle, int d, int *x1, int *y1 ) {
     #define R(x) (((x)>=0) ? ((int)((x)+0.5)) : ((int)((x)-0.5)))
-    *x1 = R( ((double)x0) + ((double)d) * cos((((double)angle)*M_PI)/180) );
-    *y1 = R( ((double)y0) + ((double)d) * sin((((double)angle)*M_PI)/180) );
+    *x1 = R( ((double)x0) + ((double)d) * cos((((double)angle)*MI_PI)/180) );
+    *y1 = R( ((double)y0) + ((double)d) * sin((((double)angle)*MI_PI)/180) );
 }
 
 /* Simplification Bresenham's line algorithm*/
