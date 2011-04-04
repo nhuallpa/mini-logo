@@ -12,7 +12,7 @@
 
 typedef enum { LIST_PRIMERO, LIST_SIGUIENTE} tPosicionado;
 
-struct nodo{
+struct nodo {
 	struct nodo* siguienteNodo;
 	tInstruccion* instruccion;
 };
