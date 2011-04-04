@@ -18,7 +18,10 @@ typedef enum {ERROR = 0,  OK = 1} tEstado;
 
 typedef enum {NO_HAY_SIG = 0,  ENCONTRADO = 1} tEstadoRecorrido;
 
-typedef enum {EXITOSO = 0,  NOEXISTE_IMAGEN = 1, CANT_PARAM_INV = 3 } tEstadoEjecucion;
+typedef enum {	EXITOSO = 0,
+				CANT_PARAM_INV = 1,
+				NO_ENCUENTRO_ARCHIVO = 2
+} tEstadoEjecucion;
 
 
 
