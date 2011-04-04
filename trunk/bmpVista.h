@@ -83,7 +83,8 @@ void publicar(tBitmapData* bmp, char* ruta);
 /*
  * Inicializa informacion para el arhivo de la imagen
  * */
-void inicializarFileHeader(tBitmapFileHeader* bmp_file_header);
+void inicializarFileHeader(tBitmapFileHeader* bmp_file_header,
+							tBitmapData* bmp_data);
 
 /*
  * Inicializa informacion sobre la imagen

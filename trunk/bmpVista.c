@@ -9,7 +9,7 @@
 void publicar(tBitmapData* bmp_data, char* ruta) {
 	tBmp bmp;
 	bmp.bmp_data = bmp_data;
-	inicializarFileHeader(&bmp.bmp_file_header);
+	inicializarFileHeader(&bmp.bmp_file_header, bmp.bmp_data);
 	inicializarInfoHeader(&bmp.bmp_info_hader, bmp.bmp_data);
 	FILE* output = abrirSalida(ruta);
 	// Todo: se puede pasar a una libreria bmpFile.h
@@ -20,10 +20,12 @@ void publicar(tBitmapData* bmp_data, char* ruta) {
 }
 
 
-void inicializarFileHeader(tBitmapFileHeader* bmp_file_header) {
+void inicializarFileHeader(tBitmapFileHeader* bmp_file_header,
+							tBitmapData* bmp_data) {
 	if (bmp_file_header) {
 		memcpy(&(bmp_file_header->bfType), "BM", 2);
-		bmp_file_header->bfSize = 0;
+		bmp_file_header->bfSize = 54 + bmp_data->alto*bmp_data->ancho*3 +
+								  ((bmp_data->ancho*3) % 4);
 		bmp_file_header->bfReserved1 = bmp_file_header->bfReserved2 = 0;
 		bmp_file_header->bfOffBits = 54;
 	}
