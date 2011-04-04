@@ -49,8 +49,7 @@ start size name stdvalue purpose
 47 4 biClrUsed 0 specifies the number of colors used in the bitmap, if set to zero the number of colors is calculated using the biBitCount member.
 51 4 biClrImportant 0 specifies the number of color that are 'important' for the bitmap, if set to zero, all colors are important.
 */
-typedef struct
-{
+typedef struct {
     uint   biSize;
     uint   biWidth;
     uint   biHeight;

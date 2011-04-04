@@ -62,6 +62,6 @@ tBoolean validaPosicion(int x0, int y0, tBitmapData* bmp_terreno);
  * pasado por parametro
  * Pre: Las coordenas deben ser validas
  */
-void pintarPosicion(int x0, int y0,tBitmapData* bmp_terreno, tColor* color);
+void pintarPosicion(int x0, int y0, tBitmapData* bmp_terreno, tColor* color);
 
 #endif /* BMP_H_ */

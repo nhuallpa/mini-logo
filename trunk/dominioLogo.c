@@ -7,7 +7,7 @@
 #include "dominioLogo.h"
 
 
-void(*hashInstrucciones[])(tInstruccion* i,tEntornoEjecucion* e) = {
+void(*hashInstrucciones[])(tInstruccion* i, tEntornoEjecucion* e) = {
 		iAdelante, iDerecha, iIzquierda, iSinPluma, iConPluma, iRepeate, iEnd, iFColor
 };
 
@@ -15,7 +15,7 @@ void(*hashColorear[CANT_COLORES])(tColor* color) = {
 	colorearBlanco, colorearNegro, colorearRojo, colorearVerde, colorearAzul
 };
 
-tBitmapData* crearTerrenoLogo(){
+tBitmapData* crearTerrenoLogo() {
 	tBitmapData* bmp_data = crearBmpData();
 	bmp_data->alto = TAMANIO_MAX;
 	bmp_data->ancho = TAMANIO_MAX;
@@ -28,45 +28,38 @@ char* leerLinea(FILE* fLogoInstrucciones, char* bufferLinea) {
 }
 
 void ejecutarInstrucciones(FILE* fLogoInstrucciones, tBitmapData* bmp_data) {
-
 	char bufferLinea[LONG_BUFFER];
 	tInstruccion instruccionesActual;
 	tEntornoEjecucion entornoActual;
-
 	inicializarEntorno(&entornoActual, bmp_data);
-
-	while (leerLinea(fLogoInstrucciones, bufferLinea) != NULL){
+	while (leerLinea(fLogoInstrucciones, bufferLinea) != NULL) {
 		if (leerInstruccion(&instruccionesActual, bufferLinea) == OK) {
 			ejecutarInstruccion(&instruccionesActual, &entornoActual);
-
 			if (entornoActual.armarBloqueRepeat &&
 				!esTipoInstruccion(&instruccionesActual, I_REPEAT) &&
 				!esTipoInstruccion(&instruccionesActual, I_END)) {
-
 				agregar(entornoActual.bloqueRepeat, &instruccionesActual);
 			}
 		}
 	}
-
 	liberarEntorno(&entornoActual);
-
 }
 
-void inicializarEntorno(tEntornoEjecucion* entornoActual, tBitmapData* bmp_data) {
+void inicializarEntorno(tEntornoEjecucion* entornoActual,
+						tBitmapData* bmp_data) {
 	entornoActual->terreno = bmp_data;
 	inicializarTortuga(&entornoActual->tortuga);
 	entornoActual->armarBloqueRepeat = FALSE;
-
-	// No lo creo aca porque se crear cuando encuentra un repeat como instruccion
-	//entornoActual->bloqueRepeat = crearListaInstruciones();
+	//  No lo creo aca porque se crear cuando encuentra un repeat como instruccion
+	//  entornoActual->bloqueRepeat = crearListaInstruciones();
 }
 
 
 
 void liberarEntorno(tEntornoEjecucion* entornoActual) {
-	// se libera cuando llega la instruccion End despues
-	// de ejecuatar el bloque
-	// libero por las dudas.
+	//  se libera cuando llega la instruccion End despues
+	//  de ejecuatar el bloque
+	//  libero por las dudas.
 	liberarListaInstrucciones(entornoActual->bloqueRepeat);
 }
 
@@ -80,7 +73,8 @@ void inicializarTortuga(tTortuga* tortuga) {
 	tortuga->color.B = 0;
 }
 
-void ejecutarInstruccion(tInstruccion* instruccion, tEntornoEjecucion* entorno) {
+void ejecutarInstruccion(tInstruccion* instruccion,
+						tEntornoEjecucion* entorno) {
 	hashInstrucciones[instruccion->idInstruccion](instruccion, entorno);
 }
 
@@ -107,7 +101,7 @@ void iDerecha(tInstruccion* instruccionesActual,
 				tEntornoEjecucion* entornoActual) {
 	int sumaAngulos =
 			entornoActual->tortuga.angulo + instruccionesActual->valor;
-	if (sumaAngulos < 360 ) {
+	if (sumaAngulos < 360) {
 		entornoActual->tortuga.angulo = entornoActual->tortuga.angulo +
 											instruccionesActual->valor;
 	} else {
@@ -138,7 +132,6 @@ void iRepeate(tInstruccion* instruccionesActual,
 	entornoActual->bloqueRepeat = crearListaInstruciones();
 	entornoActual->armarBloqueRepeat = TRUE;
 	entornoActual->nroRepeticiones = instruccionesActual->valor;
-
 }
 
 void iEnd(tInstruccion* instruccionEnd, tEntornoEjecucion* entornoActual) {
@@ -168,8 +161,8 @@ void iFColor(tInstruccion* instruccionesActual,
 }
 
 
-void calcular_xy(int x0, int y0, int angle, int d, int *x1, int *y1 ) {
-    #define R(x) (((x)>=0) ? ((int)((x)+0.5)) : ((int)((x)-0.5)))
+void calcular_xy(int x0, int y0, int angle, int d, int *x1, int *y1) {
+    #define R(x) (((x) >= 0) ? ((int)((x)+0.5)) : ((int)((x)-0.5)))
     *x1 = R(((double)x0) + ((double)d) * cos((((double)angle)*MI_PI)/180));
     *y1 = R(((double)y0) + ((double)d) * sin((((double)angle)*MI_PI)/180));
 }
