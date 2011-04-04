@@ -8,7 +8,10 @@
 #ifndef __DOMINIOLOGO_H_
 #define __DOMINIOLOGO_H_
 
+#define TAMANIO_MAX 200
+
 #include <stdio.h>
+#include <math.h>
 #include "bmp.h"
 #include "instruccion.h"
 #include "listaInstrucciones.h"
@@ -33,6 +36,10 @@ typedef struct {
 	int nroRepeticiones;
 } tEntornoEjecucion;
 
+/*
+ * Crear un terreno conveniente para la tortuga
+ * */
+tBitmapData* crearTerrenoLogo();
 
 /*
  * Leer una linea del archivo acotada por
@@ -84,6 +91,11 @@ void iEnd(tInstruccion* instruccionesActual,
 void iFColor(tInstruccion* instruccionesActual,
 				tEntornoEjecucion* entornoActual);
 
+void calcular_xy( int x0, int y0, int angle, int d, int *x1, int *y1 );
+
+void pintar(tPosicion* posIni,
+			tPosicion* posFin,
+			tEntornoEjecucion* entorno);
 
 
 #endif /* __DOMINIOLOGO_H_ */
