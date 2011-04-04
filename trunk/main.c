@@ -25,17 +25,34 @@ int main(int argc, char* argv[]) {
 	testSuiteLista();
 	testSuiteBMP();
 #else
-	char* instrucciones = "enun1.log";
-	FILE* fLogoInstrucciones = fopen(instrucciones, "rb");
-	tBitmapData* bmp_data = crearTerrenoLogo();
+	int estado = EXITOSO;
+	FILE* fLogoInstrucciones;
+	char* imagenSalida = argv[1];
 
-	ejecutarInstrucciones(fLogoInstrucciones, bmp_data);
+	if (argc == 3) {
+		if ((fLogoInstrucciones = fopen(argv[2], "rb")) == NULL) {
+			estado = NO_ENCUENTRO_ARCHIVO;
+		}
+	} else if (argc == 2) {
+		fLogoInstrucciones = stdin;
+	} else {
+		estado = CANT_PARAM_INV;
+	}
 
-	publicar(bmp_data, "salida.bmp");
-	destruirBMPData(bmp_data);
-	fclose(fLogoInstrucciones);
+	if (estado == EXITOSO) {
+		tBitmapData* bmp_data = crearTerrenoLogo();
+		ejecutarInstrucciones(fLogoInstrucciones, bmp_data);
+		publicar(bmp_data, imagenSalida);
+		destruirBMPData(bmp_data);
+	}
+
+	if (argc == 3) {
+		fclose(fLogoInstrucciones);
+	}
+
 #endif
-	return 0;
+	printf(" estado : %d paramtros %d", estado, argc);
+	return estado;
 }
 
 
