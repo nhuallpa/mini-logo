@@ -50,6 +50,7 @@ void inicializarEntorno(tEntornoEjecucion* entornoActual,
 	entornoActual->terreno = bmp_data;
 	inicializarTortuga(&entornoActual->tortuga);
 	entornoActual->armarBloqueRepeat = FALSE;
+	entornoActual->bloqueRepeat = NULL;
 	//  No lo creo aca porque se crear cuando encuentra un repeat como instruccion
 	//  entornoActual->bloqueRepeat = crearListaInstruciones();
 }
@@ -59,7 +60,7 @@ void inicializarEntorno(tEntornoEjecucion* entornoActual,
 void liberarEntorno(tEntornoEjecucion* entornoActual) {
 	//  se libera cuando llega la instruccion End despues
 	//  de ejecuatar el bloque
-	//  libero por las dudas.
+	//  libero por las dudas que no llegue la instruccion End.
 	liberarListaInstrucciones(entornoActual->bloqueRepeat);
 }
 
