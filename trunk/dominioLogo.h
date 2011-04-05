@@ -27,14 +27,17 @@ typedef struct {
 	tColor color;
 } tTortuga;
 
+typedef struct {
+	tNodo* raiz;
+	tBoolean armarBloqueRepeat;
+	int nroRepeticiones;
+} tListaRepeat;
 
 
 typedef struct {
 	tBitmapData* terreno;
 	tTortuga tortuga;
-	tNodo* bloqueRepeat;
-	tBoolean armarBloqueRepeat;
-	int nroRepeticiones;
+	tListaRepeat listaRepeat;
 } tEntornoEjecucion;
 
 /*

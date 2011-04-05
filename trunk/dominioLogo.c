@@ -35,10 +35,10 @@ void ejecutarInstrucciones(FILE* fLogoInstrucciones, tBitmapData* bmp_data) {
 	while (leerLinea(fLogoInstrucciones, bufferLinea) != NULL) {
 		if (leerInstruccion(&instruccionesActual, bufferLinea) == OK) {
 			ejecutarInstruccion(&instruccionesActual, &entornoActual);
-			if (entornoActual.armarBloqueRepeat &&
+			if (entornoActual.listaRepeat.armarBloqueRepeat &&
 				!esTipoInstruccion(&instruccionesActual, I_REPEAT) &&
 				!esTipoInstruccion(&instruccionesActual, I_END)) {
-				agregar(entornoActual.bloqueRepeat, &instruccionesActual);
+				agregar(entornoActual.listaRepeat.raiz, &instruccionesActual);
 			}
 		}
 	}
@@ -49,8 +49,8 @@ void inicializarEntorno(tEntornoEjecucion* entornoActual,
 						tBitmapData* bmp_data) {
 	entornoActual->terreno = bmp_data;
 	inicializarTortuga(&entornoActual->tortuga);
-	entornoActual->armarBloqueRepeat = FALSE;
-	entornoActual->bloqueRepeat = NULL;
+	entornoActual->listaRepeat.armarBloqueRepeat = FALSE;
+	entornoActual->listaRepeat.raiz = NULL;
 	//  No lo creo aca porque se crear cuando encuentra un repeat como instruccion
 	//  entornoActual->bloqueRepeat = crearListaInstruciones();
 }
@@ -61,7 +61,7 @@ void liberarEntorno(tEntornoEjecucion* entornoActual) {
 	//  se libera cuando llega la instruccion End despues
 	//  de ejecuatar el bloque
 	//  libero por las dudas que no llegue la instruccion End.
-	liberarListaInstrucciones(entornoActual->bloqueRepeat);
+	liberarListaInstrucciones(entornoActual->listaRepeat.raiz);
 }
 
 void inicializarTortuga(tTortuga* tortuga) {
@@ -130,30 +130,32 @@ void iConPluma(tInstruccion* instruccionesActual,
 
 void iRepeate(tInstruccion* instruccionesActual,
 				tEntornoEjecucion* entornoActual) {
-	entornoActual->bloqueRepeat = crearListaInstruciones();
-	entornoActual->armarBloqueRepeat = TRUE;
-	entornoActual->nroRepeticiones = instruccionesActual->valor;
+	entornoActual->listaRepeat.raiz = crearListaInstruciones();
+	entornoActual->listaRepeat.armarBloqueRepeat = TRUE;
+	entornoActual->listaRepeat.nroRepeticiones = instruccionesActual->valor;
 }
 
 void iEnd(tInstruccion* instruccionEnd, tEntornoEjecucion* entornoActual) {
-	entornoActual->nroRepeticiones = entornoActual->nroRepeticiones - 1;
-	entornoActual->armarBloqueRepeat = FALSE;
-	while (entornoActual->nroRepeticiones > 0) {
+	entornoActual->listaRepeat.nroRepeticiones =
+			entornoActual->listaRepeat.nroRepeticiones - 1;
+	entornoActual->listaRepeat.armarBloqueRepeat = FALSE;
+	while (entornoActual->listaRepeat.nroRepeticiones > 0) {
 		tInstruccion instruccionEnBloque;
 		tEstadoRecorrido estadoRecorrido =
-		recuperarInstruccion(entornoActual->bloqueRepeat,
+		recuperarInstruccion(entornoActual->listaRepeat.raiz,
 							 &instruccionEnBloque,
 							 LIST_PRIMERO);
 		while (estadoRecorrido ==  ENCONTRADO) {
 			ejecutarInstruccion(&instruccionEnBloque, entornoActual);
-			estadoRecorrido = recuperarInstruccion(entornoActual->bloqueRepeat,
+			estadoRecorrido = recuperarInstruccion(entornoActual->listaRepeat.raiz,
 												   &instruccionEnBloque,
 												   LIST_SIGUIENTE);
 		}
-		entornoActual->nroRepeticiones = entornoActual->nroRepeticiones - 1;
+		entornoActual->listaRepeat.nroRepeticiones =
+				entornoActual->listaRepeat.nroRepeticiones - 1;
 	}
-	liberarListaInstrucciones(entornoActual->bloqueRepeat);
-	entornoActual->bloqueRepeat = NULL;
+	liberarListaInstrucciones(entornoActual->listaRepeat.raiz);
+	entornoActual->listaRepeat.raiz = NULL;
 }
 
 void iFColor(tInstruccion* instruccionesActual,
